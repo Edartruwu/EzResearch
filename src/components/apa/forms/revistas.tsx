@@ -44,39 +44,37 @@ import {
 
 import { format } from "date-fns";
 
-// Define the schema using zod
-const formSchema = z.object({
-  titulo: z.string().trim().min(1, { message: "Título es requerido" }),
-  autores: z
-    .string()
-    .trim()
-    .min(1, { message: "Autores es requerido" })
-    .refine(
-      (val) => val.split(",").every((author) => author.trim().length > 0),
-      {
-        message:
-          "Cada nombre de autor debe estar separado por comas y no vacío",
-      },
-    ),
-  fecha: z.date(),
-  editorial: z
-    .string()
-    .trim()
-    .min(1, { message: "El nombre de la editorial es requerido" }),
-  volumen: z.string().optional(),
-  emision: z.string().optional(),
-  paginas: z.string().optional(),
-  doi: z.string().trim().url().optional(),
-  url: z.string().trim().url().optional(),
-  idioma: z.enum(["español", "ingles"]).optional(),
-});
+import { RevistaSchema } from "@/lib/validation/references";
+
+import getRevistaRef from "@/server/references/getRevistaRef";
+
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function RevistasForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof RevistaSchema>>({
+    resolver: zodResolver(RevistaSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const { toast } = useToast();
+
+  async function onSubmit(values: z.infer<typeof RevistaSchema>) {
+    if (!values) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+    } else {
+      getRevistaRef(values);
+
+      toast({
+        title: "Tu cita en Apa7 sobre una revista será generada",
+        description: "Podrás verla en el apartado de referencias!",
+      });
+    }
+
     console.log(values);
   }
 

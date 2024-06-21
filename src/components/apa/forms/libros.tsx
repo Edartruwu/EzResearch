@@ -44,38 +44,37 @@ import {
 
 import { format } from "date-fns";
 
-const formSchema = z.object({
-  titulo: z.string().trim().min(1, { message: "Título is required" }),
-  autores: z
-    .string()
-    .trim()
-    .min(1, { message: "Autores is required" })
-    .refine(
-      (val) => val.split(",").every((author) => author.trim().length > 0),
-      { message: "Each author name must be separated by commas and non-empty" },
-    ),
-  fecha: z.date(),
-  editorial: z
-    .string()
-    .trim()
-    .min(1, { message: "El nombre de la editorial es requerido" }),
-  direccion: z.string().trim().min(1, { message: "La dirección es requerida" }),
-  url: z
-    .string()
-    .trim()
-    .url()
-    .min(1, { message: "La url ingresada no es valida" })
-    .optional(), // Validate URL format if optional
-  idioma: z.enum(["español", "ingles"]).optional(), // Use array for enum values
-});
+import { LibroSchema } from "@/lib/validation/references";
+
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+
+import getLibroRef from "@/server/references/getLibroRef";
 
 export default function LibrosForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof LibroSchema>>({
+    resolver: zodResolver(LibroSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // server action logic called here
+  const { toast } = useToast();
+
+  function onSubmit(values: z.infer<typeof LibroSchema>) {
+    if (!values) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+    } else {
+      getLibroRef(values);
+
+      toast({
+        title: "Tu cita en Apa7 sobre un libro será generada",
+        description: "Podrás verla en el apartado de referencias!",
+      });
+    }
+
     console.log(values);
   }
 
