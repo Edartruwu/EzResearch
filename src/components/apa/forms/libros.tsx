@@ -238,6 +238,47 @@ export default function LibrosForm() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="tipo_libro"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>tipo de Cita</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Elije el tipo de Cita" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="libro_impreso">
+                          Libro impreso
+                        </SelectItem>
+                        <SelectItem value="libro_editores">
+                          Libro con editor(es)
+                        </SelectItem>
+                        <SelectItem value="libro_online">
+                          Libro en línea
+                        </SelectItem>
+                        <SelectItem value="libro_DOI">Libro con DOI</SelectItem>
+                        <SelectItem value="capitulo_libro">
+                          Capítulo de libro
+                        </SelectItem>
+                        <SelectItem value="audio_libro">Audiolibro</SelectItem>
+                        <SelectItem value="enciclopediaodick">
+                          Diccionario o enciclopedia en línea
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div className="col-span-full flex justify-center items-center">
               <Button type="submit">Generar cita en Apa7 para un Libro</Button>
             </div>

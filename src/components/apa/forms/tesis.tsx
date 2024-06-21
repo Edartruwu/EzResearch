@@ -108,6 +108,23 @@ export default function TesisForm() {
             />
             <FormField
               control={form.control}
+              name="tesis_de"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Titulo</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="What degree is pursuing the author?"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
               name="autores"
               render={({ field }) => (
                 <FormItem>
@@ -242,6 +259,38 @@ export default function TesisForm() {
                       <SelectContent>
                         <SelectItem value="ingles">Inglés</SelectItem>
                         <SelectItem value="español">Español</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="tesisType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tipo de Cita</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Elije el tipo de cita" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="inedita">Tesis inédita</SelectItem>
+                        <SelectItem value="repositorio">
+                          Tesis disponible en un repositorio académico
+                        </SelectItem>
+                        <SelectItem value="comercial">
+                          Tesis disponible en una base de datos comercial
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </FormControl>

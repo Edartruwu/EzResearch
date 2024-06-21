@@ -24,6 +24,15 @@ export const RevistaSchema = z.object({
   doi: z.string().trim().url().optional(),
   url: z.string().trim().url().optional(),
   idioma: z.enum(["español", "ingles"]).optional(),
+  tipoRevista: z.enum([
+    "divulgacion_impresa",
+    "divulgacion_online",
+    "numero_especial",
+    "revista_conDOI",
+    "conDOIAnticipada",
+    "sinDoi",
+    "articuloEnLinea",
+  ]),
 });
 
 export type RevistaData = z.infer<typeof RevistaSchema>;
@@ -51,12 +60,25 @@ export const LibroSchema = z.object({
     .min(1, { message: "La url ingresada no es valida" })
     .optional(), // Validate URL format if optional
   idioma: z.enum(["español", "ingles"]).optional(), // Use array for enum values
+  tipo_libro: z.enum([
+    "libro_impreso",
+    "libro_editores",
+    "libro_online",
+    "libroDOI",
+    "capitulo_libro",
+    "audio_libro",
+    "enciclopediaodick",
+  ]),
 });
 
 export type BookData = z.infer<typeof LibroSchema>;
 
 export const TesisSchema = z.object({
   titulo: z.string().trim().min(1, { message: "Título is required" }),
+  tesis_de: z
+    .string()
+    .trim()
+    .min(1, { message: "What thesis is pursuing the student?" }),
   autores: z
     .string()
     .trim()
@@ -77,6 +99,7 @@ export const TesisSchema = z.object({
   doi: z.string().trim().url().optional(), // Validate URL format if optional
   url: z.string().trim().url().optional(), // Validate URL format if optional
   idioma: z.enum(["español", "ingles"]).optional(), // Use array for enum values
+  tesisType: z.enum(["inedita", "repositorio", "comercial"]),
 });
 
 export type TesisData = z.infer<typeof TesisSchema>;

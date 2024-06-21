@@ -283,6 +283,53 @@ export default function RevistasForm() {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="tipoRevista"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tipo de Cita</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Elije el tipo de cita" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="divulgacion_impresa">
+                          Artículo de revista de divulgación impresa
+                        </SelectItem>
+                        <SelectItem value="divulgacion_online">
+                          Artículo de revista de divulgación en línea
+                        </SelectItem>
+                        <SelectItem value="numero_especial">
+                          Artículo de revista en un número especial
+                        </SelectItem>
+                        <SelectItem value="revista_conDOI">
+                          Artículo de revista con DOI
+                        </SelectItem>
+                        <SelectItem value="conDOIAnticipada">
+                          Artículo de revista con DOI, publicación anticipada en
+                          línea
+                        </SelectItem>
+                        <SelectItem value="sinDoi">
+                          Artículo de revista sin DOI en línea
+                        </SelectItem>
+                        <SelectItem value="articuloEnLiea">
+                          Artículo de periódico en línea
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div className="col-span-full flex justify-center items-center">
               <Button type="submit">
                 Generar cita en Apa7 para una Revista
