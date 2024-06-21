@@ -73,6 +73,8 @@ export default function TesisForm() {
         description: "Podrás verla en el apartado de referencias!",
       });
     }
+
+    getTesisRef(values);
     console.log(values);
   }
 
@@ -98,7 +100,7 @@ export default function TesisForm() {
                   <FormLabel>Titulo</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Ingresa el titulo del libro"
+                      placeholder="Ingresa el titulo de la tesis"
                       {...field}
                     />
                   </FormControl>
@@ -131,7 +133,7 @@ export default function TesisForm() {
                   <FormLabel>Autores</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Ingresa los autores del libro"
+                      placeholder="Ingresa los autores de la tesis"
                       {...field}
                     />
                   </FormControl>

@@ -100,7 +100,7 @@ export default function RevistasForm() {
                   <FormLabel>Título</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Ingresa el título del libro"
+                      placeholder="Ingresa el título de la revista o articulo"
                       {...field}
                     />
                   </FormControl>
@@ -116,7 +116,7 @@ export default function RevistasForm() {
                   <FormLabel>Autores</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Ingresa los autores del libro"
+                      placeholder="Ingresa los autores de la revista o articulo"
                       {...field}
                     />
                   </FormControl>

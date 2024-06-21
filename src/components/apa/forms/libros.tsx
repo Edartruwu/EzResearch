@@ -67,13 +67,13 @@ export default function LibrosForm() {
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
     } else {
-      getLibroRef(values);
-
       toast({
         title: "Tu cita en Apa7 sobre un libro será generada",
         description: "Podrás verla en el apartado de referencias!",
       });
     }
+
+    getLibroRef(values);
 
     console.log(values);
   }

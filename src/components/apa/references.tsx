@@ -15,7 +15,7 @@ export default function ReferenceCard({ title, reference }: ReferenceProps) {
   const { toast } = useToast();
 
   return (
-    <Card className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+    <Card className="bg-gray-100 min-w-[300px] dark:bg-gray-800 rounded-lg shadow-md">
       <CardHeader className="bg-gray-900 dark:bg-gray-700 rounded-t-lg py-4 px-6">
         <CardTitle className="text-white font-bold text-xl">
           Citado desde: {title}
