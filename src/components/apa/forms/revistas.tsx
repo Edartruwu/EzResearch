@@ -67,14 +67,14 @@ export default function RevistasForm() {
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
     } else {
-      getRevistaRef(values);
-
       toast({
         title: "Tu cita en Apa7 sobre una revista será generada",
         description: "Podrás verla en el apartado de referencias!",
       });
     }
 
+    const response = await getRevistaRef(values);
+    console.log(response);
     console.log(values);
   }
 
