@@ -8,9 +8,7 @@ export default function Page() {
       <Header />
       <div className="flex flex-col gap-12 items-center justify-center my-12">
         <MainForm />
-        <div>
-          <Pdfs />
-        </div>
+        <Pdfs />
       </div>
       <Footer />
     </main>

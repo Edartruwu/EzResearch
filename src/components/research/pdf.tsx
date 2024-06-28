@@ -1,26 +1,27 @@
-import { CardContent, Card } from "../ui/card";
+import { Card, CardContent, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
-interface PdfProps {
-  pdfList: { url: string }[];
+interface PDFparams {
+  name: string;
+  author: string;
+  id: string;
 }
 
-const Pdf: React.FC<PdfProps> = ({ pdfList }) => {
+export default function Pdf({ name, author, id }: PDFparams) {
   return (
-    <>
-      {pdfList.map((pdf, index) => (
-        <Card key={index} className="flex items-center justify-center p-3">
-          <CardContent>
-            el pdf:{" "}
-            <Button asChild variant={"link"}>
-              <Link href={pdf.url}>ver el pdf</Link>
-            </Button>
-          </CardContent>
-        </Card>
-      ))}
-    </>
+    <Card>
+      <CardContent className="flex flex-col gap-2 p-2 m-2">
+        <CardTitle>{name}</CardTitle>
+        <div className="flex flex-col gap-1">
+          <p>Hecho por: {author}</p>
+        </div>
+        <Button asChild>
+          <Link prefetch={true} href={`/research/${id}`}>
+            Descubre esta investigación
+          </Link>
+        </Button>
+      </CardContent>
+    </Card>
   );
-};
-
-export default Pdf;
+}

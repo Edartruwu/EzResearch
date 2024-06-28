@@ -57,7 +57,7 @@ export default function TesisForm() {
 
   const { toast } = useToast();
 
-  function onSubmit(values: z.infer<typeof TesisSchema>) {
+  async function onSubmit(values: z.infer<typeof TesisSchema>) {
     if (!values) {
       toast({
         variant: "destructive",
@@ -66,15 +66,13 @@ export default function TesisForm() {
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
     } else {
-      getTesisRef(values);
+      await getTesisRef(values);
 
       toast({
         title: "Tu cita en Apa7 sobre un libro será generada",
         description: "Podrás verla en el apartado de referencias!",
       });
     }
-
-    getTesisRef(values);
     console.log(values);
   }
 

@@ -4,6 +4,9 @@ export const mainForm = z.object({
   titulo: z.string().min(5, {
     message: "El titulo es demasiado corto",
   }),
+  author: z.string().min(5, {
+    message: "Ingresa tu nombre verdadero",
+  }),
   texto_bruto: z.string().min(10, {
     message: "El texto es demasiado corto",
   }),

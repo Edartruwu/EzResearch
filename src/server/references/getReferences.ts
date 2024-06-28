@@ -7,6 +7,7 @@ export default async function GetReferences() {
     const references = await ResearchPrisma.textReference.findMany({
       // Include desired fields:
       select: { id: true, refName: true, textRef: true, globalRef: true },
+      orderBy: { createdAt: "desc" }, // Sort by createdAt in descending order
     });
 
     return references;

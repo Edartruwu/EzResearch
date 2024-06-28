@@ -15,21 +15,20 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
+import generateDocs from "@/server/docs/pdfgen";
 import { Textarea } from "@/components/ui/textarea";
-import getDocs from "@/server/docs/pdfgen";
 import { useToast } from "@/components/ui/use-toast";
 export default function MainForm() {
   const form = useForm<z.infer<typeof mainForm>>({
     resolver: zodResolver(mainForm),
   });
   const { toast } = useToast();
-  function onSubmit(values: z.infer<typeof mainForm>) {
+  async function onSubmit(values: z.infer<typeof mainForm>) {
     toast({
       title: "Tu pdf ha sido generado correctamente",
       description: "disfruta tu investigación!",
     });
-    getDocs(values);
+    await generateDocs(values);
     console.log(values);
   }
   return (
@@ -51,6 +50,23 @@ export default function MainForm() {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="author"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Ingresa tu nombre aquí</FormLabel>
+              <FormControl>
+                <Input placeholder="Tu nombre..." {...field} />
+              </FormControl>
+              <FormDescription>
+                Este articulo será publicado a tu nombre :)
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <FormField
           control={form.control}
           name="mapa_numerico"

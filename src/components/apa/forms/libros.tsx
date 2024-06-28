@@ -58,7 +58,7 @@ export default function LibrosForm() {
 
   const { toast } = useToast();
 
-  function onSubmit(values: z.infer<typeof LibroSchema>) {
+  async function onSubmit(values: z.infer<typeof LibroSchema>) {
     if (!values) {
       toast({
         variant: "destructive",
@@ -73,7 +73,7 @@ export default function LibrosForm() {
       });
     }
 
-    getLibroRef(values);
+    await getLibroRef(values);
 
     console.log(values);
   }
@@ -264,7 +264,7 @@ export default function LibrosForm() {
                         <SelectItem value="libro_online">
                           Libro en línea
                         </SelectItem>
-                        <SelectItem value="libro_DOI">Libro con DOI</SelectItem>
+                        <SelectItem value="libroDOI">Libro con DOI</SelectItem>
                         <SelectItem value="capitulo_libro">
                           Capítulo de libro
                         </SelectItem>
