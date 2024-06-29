@@ -8,6 +8,8 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
+export const revalidate = 600;
+
 export const metadata: Metadata = {
   title: "Effortless Research with EzResearchAI: Your All-in-One Tool",
   description:

@@ -35,7 +35,7 @@ import { cn } from "@/lib/utils";
 import { CalendarIcon } from "@radix-ui/react-icons";
 
 import { Calendar } from "@/components/ui/calendar";
-
+import { revalidatePath } from "next/cache";
 import {
   Popover,
   PopoverContent,
@@ -72,6 +72,8 @@ export default function RevistasForm() {
         description: "Podrás verla en el apartado de referencias!",
       });
     }
+
+    revalidatePath("/apa");
 
     const response = await getRevistaRef(values);
     console.log(response);

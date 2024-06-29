@@ -51,6 +51,8 @@ import { ToastAction } from "@/components/ui/toast";
 
 import getLibroRef from "@/server/references/getLibroRef";
 
+import { revalidatePath } from "next/cache";
+
 export default function LibrosForm() {
   const form = useForm<z.infer<typeof LibroSchema>>({
     resolver: zodResolver(LibroSchema),
@@ -72,6 +74,7 @@ export default function LibrosForm() {
         description: "Podrás verla en el apartado de referencias!",
       });
     }
+    revalidatePath("/apa");
 
     await getLibroRef(values);
 

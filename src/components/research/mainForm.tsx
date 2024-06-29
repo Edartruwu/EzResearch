@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import generateDocs from "@/server/docs/pdfgen";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { revalidatePath } from "next/cache";
 export default function MainForm() {
   const form = useForm<z.infer<typeof mainForm>>({
     resolver: zodResolver(mainForm),
@@ -28,6 +29,8 @@ export default function MainForm() {
       title: "Tu pdf ha sido generado correctamente",
       description: "disfruta tu investigación!",
     });
+    revalidatePath("/research");
+
     await generateDocs(values);
     console.log(values);
   }

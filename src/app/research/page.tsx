@@ -2,6 +2,9 @@ import Footer from "@/components/landing/footer";
 import Header from "@/components/landing/header";
 import MainForm from "@/components/research/mainForm";
 import Pdfs from "@/components/research/pdfs";
+
+export const revalidate = 600;
+
 export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh]">

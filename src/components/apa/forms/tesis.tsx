@@ -36,6 +36,8 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 
 import { Calendar } from "@/components/ui/calendar";
 
+import { revalidatePath } from "next/cache";
+
 import {
   Popover,
   PopoverContent,
@@ -66,6 +68,8 @@ export default function TesisForm() {
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
     } else {
+      revalidatePath("/apa");
+
       await getTesisRef(values);
 
       toast({

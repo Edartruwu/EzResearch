@@ -4,6 +4,8 @@ import Pub from "@/components/research/pub";
 import EditorData from "@/components/research/editorData";
 import getDocsById from "@/server/docs/getDocs";
 
+export const revalidate = 60;
+
 export default async function Page({
   params,
 }: {
